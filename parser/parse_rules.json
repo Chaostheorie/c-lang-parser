@@ -1,0 +1,96 @@
+[
+  {
+    "identifier": "ü",
+    "replacement": "u:",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "ä",
+    "replacement": "ae",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "ö",
+    "replacement": "o:",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "keit",
+    "replacement": "ceit",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "member"
+  },
+  {
+    "identifier": "k",
+    "replacement": "c",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": false,
+    "level": "alien"
+  },
+  {
+    "sch": "ch",
+    "at_beginning": true,
+    "at_end": false,
+    "level": "member"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  },
+  {
+    "identifier": "",
+    "replacement": "",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "alien"
+  }
+]

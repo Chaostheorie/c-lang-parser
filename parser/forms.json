@@ -1,0 +1,76 @@
+[
+  {
+    "form": "polite",
+    "identifier": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "replacement": [
+      "A",
+      "E",
+      "I",
+      "O",
+      "U"
+    ],
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  },
+  {
+    "form": "unpolite",
+    "identifier": [
+      "b",
+      "c",
+      "d",
+      "f",
+      "g",
+      "h",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z"
+    ],
+    "replacement": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  }
+]
