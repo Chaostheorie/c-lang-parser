@@ -16,9 +16,8 @@ class CLangParserException(Exception):
 
 
 class CLangGrammarSet:
-    def __init__(self, level, file=None, form_file=None, ranking={"alien": 1,
-                                                                  "member": 2,
-                                                                  "core-member": 3},
+    def __init__(self, level, file=None, form_file=None,
+                 ranking={"alien": 1, "member": 2, "core-member": 3},
                  use_form=True, form="polite"):
         if file is None:
             file = os.path.realpath(__file__)[:-11] + "parse_rules.json"
@@ -75,10 +74,26 @@ class CLangGrammarSet:
                         identifiers[rule["identifier"]] = [len(self.rules)-1,
                                                            self.rankings[
                                                            rule["level"]]]
+        self.identifiers = {}
+        [self.identifiers.__setitem__(key, self.rules[value[0]])
+         for key, value in identifiers.items()]
+
+    def check_conditions(self, full, part, identifier):
+        rule = self.identifiers[identifier]
+        if rule["in_word"] and rule["at_beginning"] and rule["at_end"]:
+            return True
+        if rule["in_word"] and (full[(part-1)] == " " or
+                                full[(part+1)] == " "):
+            return False
+        if rule["at_beginning"] and (full[(part-1)] != " " and not rule["at_end"]):
+            return False
+        if rule["at_end"] and (full[(part+1)] != " " and not rule["at_beginning"]):
+            return False
+        return True
 
     def __getitem__(self, index):
         try:
-            return self.rules[index]
+            return self.identifiers[index]["replacement"]
         except KeyError:
             raise CLangParserException(f"'{key}' not in keys")
 
@@ -87,29 +102,44 @@ class CLangGrammarSet:
 
 
 class CLangParser:
-    def __init__(self, text=None, level="alien", keep_result=True,
-                 rules=None, forms=None, grammar=None):
+    def __init__(self, text=None, level="alien", keep_result=True, parse=True,
+                 rules=None, forms=None, grammar=None, lower=True):
         """Parser for c-lang advanced is meant for the c-lang advanced rules"""
         self.text = text
-        self.advanced = advanced
-        if grammar is not None:
+        self.keep_result = keep_result
+        if self.keep_result:
+            self.results = []
+        self.lower = lower
+        if grammar is None:
+            if rules is None:
+                rules = os.path.abspath(__file__)[:-11] + "parse_rules.json"
             self.grammar = CLangGrammarSet(level, rules, forms)
         else:
             self.grammar = grammar
-        if self.text is not None:
+        if self.text is not None and parse is True:
             self.parse(self.text)
 
     def parse(self, text):
-        self.text = text
-        i_pass = False
-        while i != len(self.text):
+        self.text = list(text)
+        i_pass_counter = 0
+        i = 0
+        while i != len(self.text)-1:
             i += 1
             if i_pass_counter != 0:
                 i_pass_counter -= 1
-            elif text[i] == "\\":
-                i_pass_counter = text[i:].rfind(" ")+1
-            elif text[i] in parsable.keys():
-                replacement = parsable[text[i]]
+            elif self.text[i] == "\\":
+                i_pass_counter = self.text[i:].rfind(" ")+1
+            elif self.text[i] in self.grammar.identifiers:
+                replacement = self.grammar[self.text[i]]
                 if len(replacement) > 1:
-                    i_pass_counter = True
-                text[i] = replacement  # unfinished
+                    i_pass_counter = len(replacement)
+                else:
+                    i_pass_counter = 1
+                if self.grammar.check_conditions(self.text, i, self.text[i]):
+                    self.text[i] = replacement
+        self.text = "".join(self.text)
+        if self.lower:
+            self.text = self.text.lower()
+        if self.keep_result:
+            self.results.append(self.text)
+        return self.text

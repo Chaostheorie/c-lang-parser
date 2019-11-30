@@ -40,42 +40,67 @@
     "level": "alien"
   },
   {
-    "sch": "ch",
+    "identifier": "sch",
+    "replacement": "ch",
     "at_beginning": true,
     "at_end": false,
     "level": "member"
   },
   {
-    "identifier": "",
-    "replacement": "",
+    "identifier": "ci",
+    "replacement": "c",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  },
+  {
+    "identifier": "ki",
+    "replacement": "c",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  },
+  {
+    "identifier": "si",
+    "replacement": "c",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  },
+  {
+    "identifier": "zi",
+    "replacement": "c",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "core-member"
+  },
+  {
+    "identifier": "sy",
+    "replacement": "cy",
+    "at_beginning": true,
+    "at_end": true,
+    "in_word": true,
+    "level": "member"
+  },
+  {
+    "identifier": "ß",
+    "replacement": "ss",
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
     "level": "alien"
   },
   {
-    "identifier": "",
-    "replacement": "",
+    "identifier": "ß",
+    "replacement": "C",
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
-  },
-  {
-    "identifier": "",
-    "replacement": "",
-    "at_beginning": true,
-    "at_end": true,
-    "in_word": true,
-    "level": "alien"
-  },
-  {
-    "identifier": "",
-    "replacement": "",
-    "at_beginning": true,
-    "at_end": true,
-    "in_word": true,
-    "level": "alien"
+    "level": "member"
   },
   {
     "identifier": "",
