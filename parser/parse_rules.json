@@ -5,7 +5,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "ä",
@@ -13,7 +14,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "ö",
@@ -21,7 +23,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "keit",
@@ -29,7 +32,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "member"
+    "level": "member",
+    "case-specific": false
   },
   {
     "identifier": "k",
@@ -37,14 +41,16 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": false,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "sch",
     "replacement": "ch",
     "at_beginning": true,
     "at_end": false,
-    "level": "member"
+    "level": "member",
+    "case-specific": false
   },
   {
     "identifier": "ci",
@@ -52,7 +58,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "level": "core-member",
+    "case-specific": false
   },
   {
     "identifier": "ki",
@@ -60,7 +67,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "level": "core-member",
+    "case-specific": false
   },
   {
     "identifier": "si",
@@ -68,7 +76,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "level": "core-member",
+    "case-specific": false
   },
   {
     "identifier": "zi",
@@ -76,7 +85,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "level": "core-member",
+    "case-specific": false
   },
   {
     "identifier": "sy",
@@ -84,7 +94,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "member"
+    "level": "member",
+    "case-specific": false
   },
   {
     "identifier": "ß",
@@ -92,7 +103,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "ß",
@@ -100,7 +112,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "member"
+    "level": "member",
+    "case-specific": false
   },
   {
     "identifier": "",
@@ -108,7 +121,8 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   },
   {
     "identifier": "",
@@ -116,6 +130,7 @@
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "alien"
+    "level": "alien",
+    "case-specific": false
   }
 ]
