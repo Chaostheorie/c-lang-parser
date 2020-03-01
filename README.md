@@ -18,3 +18,19 @@ Other (Mac OS X, Windows ...):
 
 Install python libraries:
 `python3.8 -m pip install -r requirements.txt`
+
+
+## command line tool
+
+`parse.py` is a click application built as convenience bind to `parser.CLangParser.parse` function and features e.g. a file converter. To control the level (alien (1), member (2), core-member(3)) the `--level` option is available.
+
+Example usage:
+
+`python3.8 parse.py file.convert foo.txt bar.txt --level=3`
+
+
+## development
+
+The parser library contains the rules and forms (WIP) as JSON files. To modify the rules or add new ones just keep the syntax.
+
+The parser library als contains the `CLangParser` and `CLangGrammarSet` with their respective Exceptions.
