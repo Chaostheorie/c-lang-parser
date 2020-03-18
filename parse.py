@@ -8,7 +8,8 @@ from parser import CLangParser
 @click.group()
 @click.option("--level", default=1, type=int,
               help="Level of parsing 1: alien, 2: member, 3: core-member")
-def parse(level):
+@click.option("--forms", default=False, type=bool, help="To use forms or not")
+def parse(level, forms):
     return
 
 
@@ -17,12 +18,13 @@ def parse(level):
 @click.argument("output", type=click.File("w+"))
 @click.option("--level", default=1, type=int,
               help="Level of parsing 1: alien, 2: member, 3: core-member")
-def file_converter(input, output, level):
+@click.option("--forms", default=False, type=bool, help="To use forms or not")
+def file_convert(input, output, level, forms):
     """
-    INPUT OUTPUT [--level]
+    INPUT OUTPUT [--level] [--forms]
     """
     levels = {1: "alien", 2: "member", 3: "core-member"}
-    parser = CLangParser(level=levels[level])
+    parser = CLangParser(level=levels[level], forms=forms)
     output.write(parser.parse(input[0].read()))
     print("Done")
 
@@ -31,12 +33,13 @@ def file_converter(input, output, level):
 @click.argument("input")
 @click.option("--level", default=1, type=int,
               help="Level of parsing 1: alien, 2: member, 3: core-member")
-def convert(input, level):
+@click.option("--forms", default=False, type=bool, help="To use forms or not")
+def convert(input, level, forms):
     """
-    INPUT [--level]
+    INPUT [--level] [--forms]
     """
     levels = {1: "alien", 2: "member", 3: "core-member"}
-    parser = CLangParser(level=levels[level])
+    parser = CLangParser(level=levels[level], forms=forms)
     print(parser.parse(input))
 
 

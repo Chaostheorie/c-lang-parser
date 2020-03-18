@@ -1,28 +1,22 @@
-[
-  {
-    "form": "polite",
-    "identifier": [
+{
+  "polite": {
+    "identifiers": [
       "a",
       "e",
       "i",
       "o",
       "u"
     ],
-    "replacement": [
-      "A",
-      "E",
-      "I",
-      "O",
-      "U"
-    ],
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "type": "upper",
+    "reverse_rest": true,
+    "level": "core-member",
+    "case-specific": true
   },
-  {
-    "form": "unpolite",
-    "identifier": [
+  "unpolite": {
+    "identifiers": [
       "b",
       "c",
       "d",
@@ -45,32 +39,12 @@
       "y",
       "z"
     ],
-    "replacement": [
-      "B",
-      "C",
-      "D",
-      "F",
-      "G",
-      "H",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z"
-    ],
+    "type": "upper",
+    "reverse_rest": true,
     "at_beginning": true,
     "at_end": true,
     "in_word": true,
-    "level": "core-member"
+    "level": "core-member",
+    "case-specific": true
   }
-]
+}

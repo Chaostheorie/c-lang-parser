@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Written by Cobalt <https://sinclair.gq> 2018
-# Warning: This codewas left untouched for two years and only for some issues
+# Warning: This code was left untouched for two years and only for some issues
 # ligthly touched by Cobalt. The code is in dire need of refactoring
 # Source: https://github.com/Chaostheorie/c-lang-parser
 # Based on syntax of https://wiki.c-base.org/dokuwiki/c-lang
@@ -26,7 +26,7 @@ class CLangGrammarSet:
 
     def __init__(self, level, file=None, form_file=None,
                  ranking={"alien": 1, "member": 2, "core-member": 3},
-                 use_form=True, form="polite"):
+                 use_form=False, form="polite"):
         if file is None:
             file = os.path.realpath(__file__)[:-11] + "parse_rules.json"
         if form_file is None:
@@ -34,15 +34,38 @@ class CLangGrammarSet:
         self.load_grammar(level, file, ranking)
         self.prepare_grammar()
         if use_form:
-            self.load_form(form, form_file)
+            self.form = form
+            self.load_form(form_file)
             self.prepare_form()
 
-    def load_form(self, form, file):
+    def load_form(self, file):
         with open(file) as f:
             self.forms = ujson.load(f)
         return
 
     def prepare_form(self):
+        if self.form not in self.forms.keys():
+            raise CLangGrammarException(f"Form {self.form} is not in forms.json")
+        form = self.forms[self.form]
+        self.log.debug(f"Form: {form}")
+        if form["type"] == "upper":
+            [self.identifiers.__setitem__(identifier.lower(), {
+                                                   "in_word": form["in_word"],
+                                                   "at_end": form["at_end"],
+                                                   "at_beginning": form["at_end"],
+                                                   "replacement": identifier.upper(),
+                                                   "case-specific": form["case-specific"]
+                                                   })
+             for identifier in form["identifiers"]]
+        elif form["type"] == "lower":
+            [self.identifiers.__setitem__(identifier.upper(), {
+                                                   "in_word": form["in_word"],
+                                                   "at_end": form["at_end"],
+                                                   "at_beginning": form["at_end"],
+                                                   "replacement": identifier.lower(),
+                                                   "case-specific": form["case-specific"]
+                                                   })
+             for identifier in form["identifiers"]]
         return
 
     def load_grammar(self, level, file, ranking):
@@ -96,19 +119,7 @@ class CLangGrammarSet:
         [self.identifiers.__setitem__(key, unsorted[key])
          for key in sorted(unsorted.keys(), key=len, reverse=True)]
         self.log.debug(f"identifiers: {self.identifiers}")
-
-    def check_conditions(self, full, part, identifier):
-        rule = self.identifiers[identifier]
-        if rule["in_word"] and rule["at_beginning"] and rule["at_end"]:
-            return True
-        if rule["in_word"] and (full[(part-1)] == " " or
-                                full[(part+1)] == " "):
-            return False
-        if rule["at_beginning"] and (full[(part-1)] != " " and not rule["at_end"]):
-            return False
-        if rule["at_end"] and (full[(part+1)] != " " and not rule["at_beginning"]):
-            return False
-        return True
+        del self.raw
 
     def get_identifier(self, iteration, full, checked=[]):
         identifiers = self.identifiers.copy()
@@ -158,7 +169,7 @@ class CLangParser:
         if grammar is None:
             if rules is None:
                 rules = os.path.abspath(__file__)[:-11] + "parse_rules.json"
-            self.grammar = CLangGrammarSet(level, rules, forms)
+            self.grammar = CLangGrammarSet(level, rules, use_form=forms)
         else:
             self.grammar = grammar
         if self.text is not None and parse is True:
@@ -173,8 +184,9 @@ class CLangParser:
                 self.log.debug(f"replaced {self.text[i]} with {identifier['replacement']}")
                 if (pass_counter := len(identifier["replacement"])) > 1:
                     i_pass_counter = pass_counter
-                    for x in range(i_pass_counter):
-                        self.text[i+x] = identifier["replacement"][x]
+                    self.text[i] = identifier["replacement"][0]
+                    for x in range(1, i_pass_counter):
+                        self.text.insert(i+x, identifier["replacement"][x])
                 else:
                     self.text[i] = identifier["replacement"]
             i += 1
@@ -184,5 +196,5 @@ class CLangParser:
         elif self.upper:
             self.text = self.text.upper()
         if self.keep_result:
-            self.results.append((text, self.text))  # type: tuple
+            self.results.append((text, self.text))
         return self.text
