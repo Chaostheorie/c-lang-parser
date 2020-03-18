@@ -42,6 +42,10 @@ Output:
 See new file REAMDE_converted.md
 ```
 
+## How to use
+
+The intended use is to convert text, markdown or other types of not encoded (pdf, odf ...) files. Also the included `parse.py` is a simple to use tool to the `CLangParser` object. To make the experience good for all types of users the included levels. To properly take advantage of the levels you should determine in which category you sort yourself in you can take a look at `parse_rules.json` after you have took a look maybe try the levels out with `--level=int` (default: 1 mor with `--help`). Also <ou can take a look at `forms.json` to take a look at thefomrs and maybe try them out with `--forms=True` (default: False).
+
 ## Compile with cython3 and gcc
 
 This is currently broken due to some cython3 problem with recognizing the args of `CLangParser.parse` as `object` and _`text`_.
